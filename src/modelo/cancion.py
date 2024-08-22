@@ -12,7 +12,9 @@ class Cancion(Base):
     minutos = Column(Integer)
     segundos = Column(Integer)
     compositor = Column(String)
-    albumes = relationship('Album', secondary='album_cancion')
+
+    # Utiliza 'Album' como string para evitar problemas de referencia cruzada
+    albumes = relationship('Album', secondary='album_cancion', overlaps="canciones")
     interpretes = relationship('Interprete', cascade='all, delete, delete-orphan')
 
 
